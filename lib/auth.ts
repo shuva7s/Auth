@@ -71,7 +71,36 @@ export const auth = betterAuth({
       await sendEmail({
         to: user.email,
         subject: "Reset your password",
-        text: `Click the link to reset your password: ${url}`,
+        html: `
+        <div style="font-family: Arial, sans-serif; background-color: #ffffff;">
+          <main style="max-width: 600px; margin: auto; background-color: #ffffff; border-radius: 8px; overflow: hidden; box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);">
+            
+            <!-- Header -->
+            <div style="background: linear-gradient(90deg, #4a90e2, #007bff); padding: 30px;">
+              <h1 style="color: #ffffff; margin: 0; font-size: 20px;">Reset Your Password</h1>
+            </div>
+      
+            <!-- Body -->
+            <div style="padding: 30px;">
+              <p style="font-size: 17px; margin-bottom: 15px; font-weight: bold; color: #111;">Hey there 👋</p>
+      
+              <p style="font-size: 15px; color: #333; margin-bottom: 15px;">
+                You recently requested to reset your password. Click the button below to proceed:
+              </p>
+      
+              <div style="text-align: center; margin: 30px 0;">
+                <a href="${url}" target="_blank" style="background-color: #007bff; color: #ffffff; padding: 12px 20px; border-radius: 6px; text-decoration: none; font-weight: bold;">
+                  Reset Password
+                </a>
+              </div>
+      
+              <p style="font-size: 14px; color: #444;">
+                This link will expire in <strong>15 minutes</strong>. If you didn’t request a password reset, feel free to ignore this email.
+              </p>
+            </div>
+          </main>
+        </div>
+      `,
       });
     },
     resetPasswordTokenExpiresIn: 5 * 60,

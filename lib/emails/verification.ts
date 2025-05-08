@@ -14,19 +14,19 @@ export const sendEmail = async ({
   to,
   subject,
   text,
+  html,
 }: {
   to: string;
   subject: string;
-  text: string;
+  text?: string;
+  html?: string;
 }) => {
-  console.log("SMTP_HOST:", process.env.SMTP_HOST);
-  console.log("SMTP_PORT:", process.env.SMTP_PORT);
-  console.log("SMTP_USER:", process.env.SMTP_USER);
   const mailOptions = {
     from: process.env.SMTP_USER,
     to: to,
     subject: subject,
     text: text,
+    html: html,
   };
 
   await transporter.sendMail(mailOptions);
