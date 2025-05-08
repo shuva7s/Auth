@@ -13,6 +13,8 @@ import {
   CardTitle,
 } from "@/components/shared/AuthCard";
 
+import { deleteCookie } from "cookies-next";
+
 import {
   Form,
   FormControl,
@@ -112,14 +114,18 @@ const Otp = ({ signup_token }: { signup_token: string }) => {
       setLoading(true);
       await axios.post(
         `${process.env.NEXT_PUBLIC_BACKEND_URL!}/verify-signup-otp`,
-        { otp: values.otp },
-        { withCredentials: true }
+        { otp: values.otp, token: signup_token }
       );
+
+      // Cookies.remove("signup_process_token");
+      deleteCookie("signup_process_token");
+
       router.push("/sign-in");
       toast.success("Sign-up successful, login to continue", {
         closeButton: true,
         richColors: true,
       });
+
       // eslint-disable-next-line @typescript-eslint/no-explicit-any
     } catch (err: any) {
       setError(err.response.data.message || "Something went wrong");

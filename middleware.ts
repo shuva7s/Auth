@@ -3,14 +3,14 @@ import { NextResponse, type NextRequest } from "next/server";
 import { Session } from "./lib/auth";
 
 const publicRoutes: string[] = ["/"];
-const publicApiRoutes: string[] = ["/api/auth/"];
-const authRoutes = ["/sign-in", "/sign-up"];
+const publicApiRoutes: string[] = ["/api/auth"];
+const authRoutes = ["/sign-in", "/sign-up", "/api/sign-up"];
 const passwordRoutes = ["/reset-password", "/forgot-password"];
 // const adminRoutes = ["/admin"];
 
 export default async function authMiddleware(request: NextRequest) {
   const pathName = request.nextUrl.pathname;
-
+  console.log("Middleware", pathName);
   const isPublicRoute = publicRoutes.includes(pathName);
   const isPublicApiRoute = publicApiRoutes.find((route) =>
     pathName.startsWith(route)

@@ -61,7 +61,7 @@ const SignUp = () => {
     setLoading(true);
     try {
       await axios.post(
-        `${process.env.NEXT_PUBLIC_BACKEND_URL!}/signup`,
+        `${process.env.NEXT_PUBLIC_FRONTEND_URL!}/api/sign-up`,
         values,
         {
           withCredentials: true,
