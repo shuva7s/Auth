@@ -25,7 +25,7 @@ const Profile = async () => {
     auth.api.listSessions({ headers: hdrs }),
     auth.api.listUserAccounts({ headers: hdrs }),
   ]);
-  console.log(session);
+  // console.log(session);
   if (!session || !sessions || !accounts) {
     return redirect("/sign-in");
   }
@@ -46,7 +46,7 @@ const Profile = async () => {
     });
 
   return (
-    <Card className="max-w-5xl pb-0 rounded-lg">
+    <Card className="max-w-5xl pb-0 rounded-lg my-6">
       <CardHeader className="flex flex-col gap-4 border-b">
         <div className="w-full flex flex-row items-center justify-between gap-4">
           <div className="truncate">

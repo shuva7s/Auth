@@ -74,8 +74,7 @@ const SignUp = () => {
       });
       // eslint-disable-next-line @typescript-eslint/no-explicit-any
     } catch (error: any) {
-      console.log(error);
-      setError(error.response?.data.message || "Something went wrong.");
+      setError(error.response?.data.error || "Something went wrong.");
     } finally {
       setLoading(false);
       setDisabled(false);
@@ -147,7 +146,7 @@ const SignUp = () => {
                   {/* <FormLabel>Name</FormLabel> */}
                   <FormControl>
                     <Input
-                      placeholder="shadcn"
+                      placeholder="Name"
                       {...field}
                       disabled={disabled}
                       onChange={(e) => {

@@ -166,7 +166,7 @@ const Otp = ({ signup_token }: { signup_token: string }) => {
         }, 1000);
       }
     } catch (error) {
-      console.log("Error resending OTP:", error);
+      // console.log("Error resending OTP:", error);
       if (error instanceof AxiosError && error.response?.status === 429) {
         setError(error.response.data.message || "Too many resend OTP requests");
       }

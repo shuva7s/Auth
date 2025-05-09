@@ -25,7 +25,7 @@ import { Button } from "../ui/button";
 import { CircleAlert, Loader2 } from "lucide-react";
 import { toast } from "sonner";
 import { authClient } from "@/lib/auth-client";
-// import { useRouter } from "next/navigation";
+import { useRouter } from "next/navigation";
 import { useState } from "react";
 import Error from "../shared/Error";
 
@@ -38,7 +38,7 @@ export const passWordSchema = z.object({
 
 const EditProfile = ({ name }: { name: string }) => {
   const [loading, setLoading] = useState(false);
-  // const router = useRouter();
+  const router = useRouter();
   const [error, setError] = useState("");
   const [currentName, setCurrentName] = useState(name);
 
@@ -63,6 +63,7 @@ const EditProfile = ({ name }: { name: string }) => {
         onSuccess: () => {
           setCurrentName(values.name);
           form.reset({ name: values.name });
+          router.refresh();
           toast.success("Your account has been updated successfully.", {
             closeButton: true,
             richColors: true,

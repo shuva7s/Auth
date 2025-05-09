@@ -56,6 +56,7 @@ export const auth = betterAuth({
   emailAndPassword: {
     enabled: true,
     autoSignIn: false,
+    disableSignUp: true,
     minPasswordLength: 8,
     maxPasswordLength: 50,
     requireEmailVerification: true,
@@ -95,7 +96,7 @@ export const auth = betterAuth({
               </div>
       
               <p style="font-size: 14px; color: #444;">
-                This link will expire in <strong>15 minutes</strong>. If you didn’t request a password reset, feel free to ignore this email.
+                This link will expire in <strong>5 minutes</strong>. If you didn’t request a password reset, feel free to ignore this email.
               </p>
             </div>
           </main>

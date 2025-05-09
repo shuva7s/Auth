@@ -10,7 +10,7 @@ const passwordRoutes = ["/reset-password", "/forgot-password"];
 
 export default async function authMiddleware(request: NextRequest) {
   const pathName = request.nextUrl.pathname;
-  console.log("Middleware", pathName);
+  // console.log("Middleware", pathName);
   const isPublicRoute = publicRoutes.includes(pathName);
   const isPublicApiRoute = publicApiRoutes.find((route) =>
     pathName.startsWith(route)

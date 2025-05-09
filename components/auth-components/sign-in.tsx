@@ -70,7 +70,7 @@ const SignIn = () => {
           });
         },
         onError: (ctx) => {
-          console.log(ctx);
+          // console.log(ctx);
           setError(ctx.error.message);
           setLoading(false);
         },
