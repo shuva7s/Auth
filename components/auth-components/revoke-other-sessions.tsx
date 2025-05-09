@@ -15,16 +15,19 @@ import { Loader2 } from "lucide-react";
 import { toast } from "sonner";
 import { authClient } from "@/lib/auth-client";
 import { useRouter } from "next/navigation";
+import { useState } from "react";
 
 const RevokeOtherSessions = ({
-  loading,
-  setLoading,
+  disabled,
+  setDisabled,
 }: {
-  loading: boolean;
-  setLoading: React.Dispatch<React.SetStateAction<boolean>>;
+  disabled: boolean;
+  setDisabled: React.Dispatch<React.SetStateAction<boolean>>;
 }) => {
   const router = useRouter();
+  const [loading, setLoading] = useState(false);
   const handleRevokeOtherSessions = async () => {
+    setDisabled(true);
     setLoading(true);
     try {
       await authClient.revokeOtherSessions();
@@ -40,13 +43,18 @@ const RevokeOtherSessions = ({
         closeButton: true,
       });
     } finally {
+      setDisabled(false);
       setLoading(false);
     }
   };
   return (
     <Dialog>
       <DialogTrigger asChild>
-        <Button variant="secondary" className="h-auto min-h-16">
+        <Button
+          variant="secondary"
+          className="h-auto min-h-16"
+          disabled={disabled}
+        >
           {loading ? (
             <Loader2 className="animate-spin text-muted-foreground" />
           ) : (

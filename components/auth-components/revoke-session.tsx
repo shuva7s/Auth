@@ -15,19 +15,21 @@ import { Loader2, LogOut } from "lucide-react";
 import { toast } from "sonner";
 import { authClient } from "@/lib/auth-client";
 import { useRouter } from "next/navigation";
+import { useState } from "react";
 
 const RevokeSession = ({
   token,
   device,
-  loading,
-  setLoading,
+  disabled,
+  setDisabled,
 }: {
   token: string;
   device: string;
-  loading: boolean;
-  setLoading: React.Dispatch<React.SetStateAction<boolean>>;
+  disabled: boolean;
+  setDisabled: React.Dispatch<React.SetStateAction<boolean>>;
 }) => {
   const router = useRouter();
+  const [loading, setLoading] = useState(false);
   const handleRevokeSession = async () => {
     if (!token) {
       toast.error("Missing token.", {
@@ -36,6 +38,7 @@ const RevokeSession = ({
       });
       return;
     }
+    setDisabled(true);
     setLoading(true);
     try {
       await authClient.revokeSession({
@@ -54,6 +57,7 @@ const RevokeSession = ({
       });
     } finally {
       setLoading(false);
+      setDisabled(false);
     }
   };
   return (
@@ -62,6 +66,7 @@ const RevokeSession = ({
         <Button
           variant={"ghost"}
           size={"icon"}
+          disabled={disabled}
           className="absolute top-1/2 right-3 -translate-y-1/2 opacity-50 hover:opacity-100 transition-opacity"
         >
           {loading ? (

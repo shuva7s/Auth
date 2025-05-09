@@ -20,7 +20,7 @@ const SessionContainer = ({
   currentSessioId: string;
   sessions: formattedSessionType[];
 }) => {
-  const [loading, setLoading] = useState(false);
+  const [disabled, setDisabled] = useState(false);
   return (
     <>
       {sessions.map((ssn) => (
@@ -34,8 +34,8 @@ const SessionContainer = ({
             <RevokeSession
               token={ssn.token}
               device={ssn.deviceType + " " + ssn.browser}
-              loading={loading}
-              setLoading={setLoading}
+              disabled={disabled}
+              setDisabled={setDisabled}
             />
           )}
 
@@ -50,7 +50,7 @@ const SessionContainer = ({
         </div>
       ))}
       {sessions.length > 1 && (
-        <RevokeOtherSessions loading={loading} setLoading={setLoading} />
+        <RevokeOtherSessions disabled={disabled} setDisabled={setDisabled} />
       )}
     </>
   );
