@@ -89,7 +89,7 @@ export const auth = betterAuth({
                 You recently requested to reset your password. Click the button below to proceed:
               </p>
       
-              <div style="text-align: center; margin: 30px 0;">
+              <div style="margin: 30px 0;">
                 <a href="${url}" target="_blank" style="background-color: #007bff; color: #ffffff; padding: 12px 20px; border-radius: 6px; text-decoration: none; font-weight: bold;">
                   Reset Password
                 </a>
