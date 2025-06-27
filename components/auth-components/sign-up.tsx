@@ -74,7 +74,9 @@ const SignUp = () => {
       });
       // eslint-disable-next-line @typescript-eslint/no-explicit-any
     } catch (error: any) {
-      setError(error.response?.data.error || "Something went wrong.");
+      setError(
+        error.response?.data.error || error.message || "Something went wrong."
+      );
     } finally {
       setLoading(false);
       setDisabled(false);
